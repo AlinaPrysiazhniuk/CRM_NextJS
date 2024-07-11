@@ -9,6 +9,7 @@ export default function RootLayout({
 }:{
   children: React.ReactNode;
 }) {
+  console.log('rendering');
   return (
     <html lang="en">
       <body className={font.className}>{children}</body>
