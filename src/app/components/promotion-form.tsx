@@ -53,6 +53,10 @@ export default function PromotionForm({
   });
 
   const handleSubmit = async (values: PromotionFieldValues) => {
+    if (!company) {
+      return;
+    }
+
     await mutateAsync({
       ...values,
       discount: Number(values.discount) || 0,
@@ -66,30 +70,30 @@ export default function PromotionForm({
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      <Form className="flex flex-col gap-10">
-        <p className="mb-0.5 text-xl">Add new promotion</p>
-        <div className="flex flex-col gap-5">
-          <InputField required label="Title" placeholder="Title" name="title" />
-          <InputField
-            required
-            label="Description"
-            placeholder="Description"
-            name="description"
-          />
-          <InputField
-            required
-            type="number"
-            label="Discount"
-            placeholder="Discount"
-            name="discount"
-          />
-          <LogoUploader square label="Image" placeholder="Upload photo" />
-        </div>
-        <Button type="submit" disabled={isPending}>
-          Add promotion
-        </Button>
-      </Form>
-    </Formik>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        <Form className="flex flex-col gap-10">
+          <p className="mb-0.5 text-xl">Add new promotion</p>
+          <div className="flex flex-col gap-5">
+            <InputField required label="Title" placeholder="Title" name="title" />
+            <InputField
+                required
+                label="Description"
+                placeholder="Description"
+                name="description"
+            />
+            <InputField
+                required
+                type="number"
+                label="Discount"
+                placeholder="Discount"
+                name="discount"
+            />
+            <LogoUploader square label="Image" placeholder="Upload photo" />
+          </div>
+          <Button type="submit" disabled={isPending}>
+            Add promotion
+          </Button>
+        </Form>
+      </Formik>
   );
 }
